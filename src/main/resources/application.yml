@@ -1,0 +1,49 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/parking_system?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+      timeout: 2000ms
+
+  cache:
+    type: redis
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+  # 静态资源映射：/uploads/** 对应磁盘上的 D:/parking-uploads/ 目录
+  web:
+    resources:
+      static-locations: classpath:/static/,file:D:/parking-uploads/
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+baidu:
+  ai:
+    appId: 122451085
+    apiKey: AMDD3sxhcP3vcPESDMQRbWWo
+    secretKey: C860wywF3P3ffDBQhKQJhQTH0YVIZJNV
+
+# 图片上传根目录（Windows路径，可按需修改）
+upload:
+  path: D:/parking-uploads/
